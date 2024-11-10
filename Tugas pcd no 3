@@ -1,0 +1,18 @@
+pip install imageio numpy scipy
+
+import imageio
+import numpy as np
+from scipy import ndimage
+
+# Membaca gambar
+img = imageio.imread('gambar.jpg')  # Ganti 'gambar.jpg' dengan nama file gambar Anda
+
+# Mengubah gambar menjadi grayscale
+gray_img = np.dot(img[...,:3], [0.299, 0.587, 0.114]).astype(np.uint8)
+
+# Melakukan operasi blurring
+blurred_img = ndimage.gaussian_filter(gray_img, sigma=3)
+
+# Menampilkan gambar hasil
+imageio.imwrite('gambar_blur.jpg', blurred_img)
+print("Gambar telah diubah menjadi grayscale dan diblur.")
